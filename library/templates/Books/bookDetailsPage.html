@@ -1,0 +1,69 @@
+{% extends "baseTemplate.html" %}
+
+{% block title %}
+Book Details
+{% endblock %}
+
+{% block body %}
+<div class="album py-3 bg-body-tertiary">
+  <div class="container">
+    <div class="card m-2">
+
+      <dl class="row p-3">
+        <dt class="col-sm-2 fs-5">Book Id :</dt>
+        <dd class="col-sm-9 fs-5 ">{{query.bookID}}</dd>
+
+        <dt class="col-sm-2 fs-5">Title :</dt>
+        <dd class="col-sm-9 fs-5 ">{{query.title}}</dd>
+
+        <dt class="col-sm-2 fs-5">Authors :</dt>
+        <dd class="col-sm-9 fs-5">{{query.authors}}</dd>
+
+        <dt class="col-sm-2 fs-5">Average Rating :</dt>
+        <dd class="col-sm-9 fs-5">{{query.average_rating}}</dd>
+
+        <dt class="col-sm-2 fs-5">ISBN :</dt>
+        <dd class="col-sm-9 fs-5">{{query.isbn}}</dd>
+
+        <dt class="col-sm-2 fs-5">ISBN13 :</dt>
+        <dd class="col-sm-9 fs-5">{{query.isbn13}}</dd>
+
+        <dt class="col-sm-2 fs-5">Language Code :</dt>
+        <dd class="col-sm-9 fs-5">{{query.language_code}}</dd>
+
+        <dt class="col-sm-2 fs-5">Number of Pages :</dt>
+        <dd class="col-sm-9 fs-5">{{query.num_pages}}</dd>
+
+        <dt class="col-sm-2 fs-5">Ratings Count :</dt>
+        <dd class="col-sm-9 fs-5">{{query.ratings_count}}</dd>
+
+        <dt class="col-sm-2 fs-5">Text Review Count :</dt>
+        <dd class="col-sm-9 fs-5">{{query.text_reviews_count}}</dd>
+
+        <dt class="col-sm-2 fs-5">Publication Date :</dt>
+        <dd class="col-sm-9 fs-5">{{query.publication_date}}</dd>
+
+        <dt class="col-sm-2 fs-5">Publisher :</dt>
+        <dd class="col-sm-9 fs-5">{{query.publisher}}</dd>
+
+        <dt class="col-sm-2 fs-5">Quantity :</dt>
+        <dd class="col-sm-9 fs-5">{{query.quantity}}</dd>
+
+        <dt class="col-sm-2 fs-5">Rent :</dt>
+        <dd class="col-sm-9 fs-5">{{query.rent}}</dd>
+
+        <dt class="col-sm-2 fs-5 mt-3">
+          <a type="button" class="btn btn-outline-primary" href="/update/book/{{query.bookID}}">Edit</a>
+          <a class="btn btn-secondary" href="/books">Back</a>
+
+        </dt>
+
+      </dl>
+    </div>
+
+  </div>
+</div>
+
+
+
+{% endblock %}

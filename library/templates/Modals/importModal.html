@@ -1,0 +1,27 @@
+<!-- Modal -->
+<div class="modal fade" id="importModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header ">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Import Books</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form action="/importBooks" method="post">
+                <div class="modal-body">
+                    <div class="mb-1">
+                        <input type="text" class="form-control"  placeholder="Enter title" name="title">
+                    </div>
+                    <div class="p-2 text-center">
+                       OR
+                    </div>
+                    <div class="mb-3">
+                        <input type="number" class="form-control" placeholder="Enter No. of books to import" name="nbooks">
+                    </div>
+                    <div class="d-grid gap-2">
+                        <button type="submit" class="btn btn-secondary">Import</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

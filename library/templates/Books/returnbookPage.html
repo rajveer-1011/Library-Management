@@ -1,0 +1,84 @@
+{% extends "baseTemplate.html" %}
+
+{% block title %}
+Return Book
+{% endblock %}
+
+{% block body %}
+
+<div class="container">
+
+    {% if query1 %}
+
+    <h4> Books issued by {{user.userName}}</h4>
+
+
+    <table class="table m-2">
+        <thead>
+            <tr>
+                <th scope="col">Transaction id</th>
+                <th scope="col">Book title</th>
+                <th scope="col">User name</th>
+                <th scope="col">Issue date</th>
+                <th scope="col">Expected return date</th>
+                <th scope="col">Status</th>
+                <th scope="col">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for query in query1 %}
+            <tr>
+                <th scope="row">{{query.id}}</th>
+                <td>{{query.book.title}}</td>
+                <td>{{query.user.userName}}</td>
+                <td>{{query.IssueDate.date()}}</td>
+                <td>{{query.ExpRetDate}}</td>
+                <td>{{query.status}}</td>
+                <td>
+                    <button  class="btn btn-secondary" data-bs-toggle="modal"
+                        data-bs-target="#exampleModal{{query.userID}}">Return</button>
+                </td>
+                <!-- Modal -->
+
+                <div class="modal fade" tabindex="-1" role="dialog" id="exampleModal{{query.userID}}"
+                    aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content rounded-4 shadow">
+                            <div class="modal-header border-bottom-0">
+                                <h1 class="modal-title fs-5">Return Book </h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <form action="/returnbook" method="post">
+                                <div class="modal-body py-0">
+                                    <input type="hidden" name="id" value="{{query.id}}">
+                                    <h5> Returning <b>{{query.book.title}} </b> from {{query.user.userName}} ? </h5>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" name="paid" value="yes"
+                                            id="flexCheckDefault">
+                                        <input class="form-check-input" type="hidden" name="paid" value="no"
+                                            id="flexCheckDefault">
+                                        <label class="form-check-label" for="flexCheckDefault">
+                                            Paid
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="modal-footer flex-column align-items-stretch w-100 gap-2 pb-3 border-top-0">
+                                    <button type="submit" class="btn btn-primary" name="return"
+                                        value="returnBook">Return</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <h3>No book's to return</h3>
+    {% endif %}
+    <a class="btn btn-secondary" href="/">Back</a>
+</div>
+{% endblock %}

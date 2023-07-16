@@ -1,0 +1,82 @@
+{% extends 'baseTemplate.html' %}
+
+{% block title %}
+Analytics
+{% endblock %}
+
+{% block body %}
+
+
+<div class="container">
+    
+    <h2 class="pb-2 border-bottom">Top 10 popular Books</h2>
+    <h6>Total Number of Books : {{ books }}</h6>
+    <canvas id="myChart" class="m-2"></canvas>
+    <h2 class="pb-2 border-bottom mt-2">Top 10 paying members</h2>
+    <h6>Total Number of Members : {{ members }}</h6>
+    <canvas id="myChart2" class="m-2"></canvas>
+
+</div>
+
+
+{% block javascript %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+    
+    const ctx = document.getElementById('myChart');
+    const ctx2 = document.getElementById('myChart2');
+
+    book_title = JSON.parse({{ book_title | tojson}})
+    book_count = JSON.parse({{ book_count | tojson}})
+    member_paid = JSON.parse({{member_paid | tojson}})
+    members_name = JSON.parse({{members_name | tojson}})
+
+
+    new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: book_title,
+            datasets: [{
+                label: 'Top 10 popular Books',
+                data: book_count,
+                borderWidth: 1,
+                backgroundColor: ['rgba(75, 192, 192, 0.2)'],
+                borderColor: ['rgb(75, 192, 192)'],
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+
+    new Chart(ctx2, {
+        type: 'bar',
+        data: {
+            labels: members_name,
+            datasets: [{
+                label: 'Top 10 paying members',
+                data: member_paid,
+                borderWidth: 1,
+                backgroundColor: ['rgba(255, 99, 132, 0.2)'],
+                borderColor: ['rgb(255, 99, 132)']
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    }
+    );
+</script>
+
+
+{% endblock %}
+{% endblock %}

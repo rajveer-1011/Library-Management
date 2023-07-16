@@ -1,0 +1,64 @@
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+
+{% block body %}
+
+<main>
+    <section class="container ">
+
+      <div class="row ">
+        <div class="col-lg-6 col-md-8 mx-auto">
+          <h1 class="fw-light text-center">Transactions</h1>
+        </div>
+      </div>
+    </section>
+
+    <div class="table-md" style="width: 100%;">
+      <table class="table text-center table-bordered">
+        <thead>
+          <tr>
+            <th scope="col">#id</th>
+            <th scope="col">Book Title</th>
+            <th scope="col">User Name</th>
+            <th scope="col">Issue date</th>
+            <th scope="col">Expected Return date</th>
+            <th scope="col">Actual Return date</th>
+            <th scope="col">Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for query in query %}
+          <tr>
+            <th scope="row">{{query.id}}</th>
+            {% if query.book.title %}
+            <td class="text-wrap" style="width: 250px;">{{query.book.title}}</td>
+            {% else %}
+            <td style="color: red;">Book deleted</td>
+            {% endif %}
+
+            {% if query.user.userName %}
+            <td>{{query.user.userName}}</td>
+            {% else %}
+            <td style="color: red;">User deleted</td>
+            {% endif %}
+
+            <td>{{query.IssueDate.date()}}</td>
+            <td>{{query.ExpRetDate}}</td>
+
+            {% if query.ActRetDate == None %}
+            <td style="color: red;">Book Not returned </td>
+            {% else %}
+            <td>{{query.ActRetDate.date()}}</td>
+            {% endif %}
+
+            <td>{{query.status}}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
+  </main>
+
+
+{% endblock %}

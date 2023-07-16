@@ -1,0 +1,45 @@
+
+<!-- Modal -->
+<div class="modal fade" id="issueModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header ">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Issue book</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form action="/issuebook" method="post">
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <div class="input-group">
+                            <label class="input-group-text" for="inputGroupSelect01">Select Book</label>
+
+                            <select class="form-select" name="bookId" required>
+                                {% for book in books %}
+                                <option value="{{book.bookID}}">{{book.title}}</option>
+                                {% endfor%}
+                            </select>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <div class="input-group">
+                            <label class="input-group-text" for="inputGroupSelect01">Select User</label>
+
+                            <select class="form-select" name="userId" required>
+                                {% for user in users %}
+                                <option value="{{user.userID}}">{{user.userName}}</option>
+                                {% endfor%}
+                            </select>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Enter Return date</label>
+                        <input type="date" class="form-control" name="ExpRetDate" value="{{date}}" required>
+                    </div>
+                    <div class="d-grid gap-2">
+                        <button type="submit" class="btn btn-secondary">Issue</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

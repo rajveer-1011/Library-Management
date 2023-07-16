@@ -1,0 +1,102 @@
+{% extends "baseTemplate.html" %}
+
+{% block title %}
+Members
+{% endblock %}
+
+{% block body %}
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="chevron-right" viewBox="0 0 16 16">
+    <path fill-rule="evenodd"
+      d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
+  </symbol>
+</svg>
+
+<main>
+  <section class="container">
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    {% for category, message in messages %}
+    <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+      <strong> {{message}}</strong>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+
+    <div class="row">
+      <div class="col-lg-6 col-md-8 mx-auto">
+        <h1 class="fw-light text-center ">Members</h1>
+      </div>
+      <p>
+        <a href="/add/member" class="btn btn-outline-primary my-2">Add Member</a>
+      </p>
+    </div>
+  </section>
+
+  <div class="album py-3 bg-body-tertiary">
+    <div class="container">
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+        {% for query in query %}
+        <div class="col">
+          <div class="card shadow-sm">
+            <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="60" fill="currentColor" class="bi bi-person"
+              viewBox="0 0 16 16">
+              <path
+                d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0Zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4Zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10Z" />
+            </svg>
+            <div class="card-body text-center">
+              <h5 class="card-title ">{{query.userName}} </h5>
+              <h5 class="card-title ">{{query.name}} </h5>
+              <p class="card-text">Debt : {{query.debt}}</p>
+              <p class="card-text">Total paid : {{query.total_paid}}</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                  <a href="/transaction/member/{{query.userID}}" class="btn btn-sm btn-outline-success">Transaction</a>
+                </div>
+                <div class="btn-group">
+                  <a type="button" class="btn btn-sm btn-outline-primary"
+                    href="/update/member/{{query.userID}}">Edit</a>
+                  <a type="button" class="btn btn-sm btn-outline-danger" data-bs-toggle="modal"
+                    data-bs-target="#exampleModal{{query.userID}}">Delete</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal{{query.userID}}" tabindex="-1" aria-labelledby="exampleModalLabel"
+          aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content rounded-3 shadow">
+              <div class="modal-body p-4 text-center">
+                <h5 class="mb-0">Delete User</h5>
+                <p class="mb-0">Are you sure to remove member <b>{{query.userName}}</b> ?</p>
+              </div>
+              <div class="modal-footer flex-nowrap p-0">
+                <a type="button"
+                  class="btn btn-lg btn-link fs-6 text-decoration-none col-6 py-3 m-0 rounded-0 border-end"
+                  href="/member/delete/{{query.userID}}"><strong class="text-danger">Yes, delete</strong></a>
+                <button type="button" class="btn btn-lg btn-link fs-6 text-decoration-none col-6 py-3 m-0 rounded-0"
+                  data-bs-dismiss="modal">No thanks</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</main>
+
+
+
+
+
+
+{% endblock %}

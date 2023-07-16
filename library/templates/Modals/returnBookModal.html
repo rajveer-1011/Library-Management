@@ -1,0 +1,30 @@
+<!-- Return Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Return book</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="/returnbook" method="post">
+                    <div class="mb-3">
+                        <div class="mb-3">
+                            <div class="mb-3">
+                                <div class="input-group">
+                                    <label class="input-group-text" for="inputGroupSelect01">Select User</label>
+                                    <select class="form-select" name="userId">
+                                        {% for user in users %}
+                                        <option value="{{user.userID}}">{{user.userName}}</option>
+                                        {% endfor%}
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" name="return" value="returnBookInfo" class="btn btn-secondary">Details</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

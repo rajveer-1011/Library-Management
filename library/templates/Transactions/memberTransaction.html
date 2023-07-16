@@ -1,0 +1,97 @@
+{% extends "baseTemplate.html" %}
+
+{% block title %}
+Members Transaction
+{% endblock %}
+
+
+{% block body %}
+<div class="row ">
+    <div class="col-lg-6 col-md-8 mx-auto">
+        <h1 class="fw-light text-center">{{user.name}}'s Transactions</h1>
+    </div>
+</div>
+<div class="album py-3 bg-body-tertiary">
+    <div class="table-responsive-sm mt-2 container">
+        <table class="table table-hover text-center">
+            <thead>
+                <tr class="">
+                    <th scope="col">Transaction id</th>
+                    <th scope="col">User name</th>
+                    <th scope="col">Book name</th>
+                    <th scope="col">IssueDate</th>
+                    <th scope="col">ExpRetDate</th>
+                    <th scope="col">ActRetDate</th>
+                    <th scope="col">Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for q in query %}
+                {% if "issued" in [q.status] %}
+                <tr class=" table-bordered border-danger">
+                    <th scope="row">{{q.id}}</th>
+
+                    {% if q.user.userName %}
+                    <td>{{q.user.userName}}</td>
+                    {% else %}
+                    <td class="text-danger">User deleted</td>
+                    {% endif %}
+
+                    {% if q.book.title %}
+                    <td>{{q.book.title}}</td>
+                    {% else %}
+                    <td class="text-danger">Book deleted</td>
+                    {% endif %}
+
+                    <td>{{q.IssueDate.date()}}</td>
+                    <td>{{q.ExpRetDate}}</td>
+
+                    {% if q.ActRetDate == None %}
+                    <td class="text-danger">Book not returned </td>
+                    {% else %}
+                    <td>{{q.ActRetDate.date()}}</td>
+                    {% endif %}
+
+                    <td>{{q.status}}</td>
+                    </td>
+                </tr>
+                {% else %}
+                <tr class=" table-bordered border-success">
+                    <th scope="row">{{q.id}}</th>
+                    {% if q.user.userName %}
+                    <td>{{q.user.userName}}</td>
+                    {% else %}
+                    <td class="text-danger">User deleted</td>
+                    {% endif %}
+
+                    {% if q.book.title %}
+                    <td>{{q.book.title}}</td>
+                    {% else %}
+                    <td class="text-danger">Book deleted</td>
+                    {% endif %}
+
+                    <td>{{q.IssueDate.date()}}</td>
+                    <td>{{q.ExpRetDate}}</td>
+
+                    {% if q.ActRetDate == None %}
+                    <td class="text-danger">Book not returned </td>
+                    {% else %}
+                    <td>{{q.ActRetDate.date()}}</td>
+                    {% endif %}
+
+                    <td>{{q.status}}</td>
+                    </td>
+                </tr>
+                {% endif %}
+                {% endfor %}
+            </tbody>
+        </table>
+        <a class="btn btn-secondary" href="/members">Back</a>
+
+    </div>
+</div>
+
+
+
+
+{% endblock %}

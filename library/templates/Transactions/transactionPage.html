@@ -1,0 +1,120 @@
+{% extends "baseTemplate.html" %}
+
+{% block title %}
+{{name}}
+{% endblock %}
+
+{% block body %}
+
+<main>
+  <section class="container">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    {% for category, message in messages %}
+    <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+      <strong> {{message}}</strong>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+
+    <div class="row ">
+      <div class="col-lg-6 col-md-8 mx-auto">
+        <h1 class="fw-light text-center">{{name}}</h1>
+      </div>
+    </div>
+    {% if query %}
+    <p>
+      {% if name == "Transactions" %}
+      <a href="/export" class="btn btn-secondary my-2">Export to PDF</a>
+      {% endif %}
+    </p>
+  </section>
+  <div class="album py-3 bg-body-tertiary">
+    <div class="table-responsive-sm mt-2 container ">
+      <table class="table table-hover  text-center ">
+        <thead>
+          <tr>
+            <th scope="col">#id</th>
+            <th scope="col">Book Title</th>
+            <th scope="col">User Name</th>
+            <th scope="col">Issue date</th>
+            <th scope="col">Expected Return date</th>
+            <th scope="col">Actual Return date</th>
+            <th scope="col">Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for query in query %}
+          {% if query.status == "returned" %}
+          <tr class=" table-bordered border-success">
+            <th scope="row">{{query.id}}</th>
+            {% if query.book.title %}
+            <td class="text-wrap" style="width: 250px;">{{query.book.title}}</td>
+            {% else %}
+            <td class="text-danger">Book deleted</td>
+            {% endif %}
+
+            {% if query.user.userName %}
+            <td>{{query.user.userName}}</td>
+            {% else %}
+            <td class="text-danger">User deleted</td>
+            {% endif %}
+
+            <td>{{query.IssueDate.date()}}</td>
+            <td>{{query.ExpRetDate}}</td>
+
+            {% if query.ActRetDate == None %}
+            <td class="text-danger">Book Not returned </td>
+            {% else %}
+            <td>{{query.ActRetDate.date()}}</td>
+            {% endif %}
+
+            <td>{{query.status}}</td>
+          </tr>
+          {% else %}
+          <tr class=" table-bordered border-danger">
+            <th scope="row">{{query.id}}</th>
+            {% if query.book.title %}
+            <td class="text-wrap" style="width: 250px;">{{query.book.title}}</td>
+            {% else %}
+            <td class="text-danger">Book deleted</td>
+            {% endif %}
+
+            {% if query.user.userName %}
+            <td>{{query.user.userName}}</td>
+            {% else %}
+            <td class="text-danger">User deleted</td>
+            {% endif %}
+
+            <td>{{query.IssueDate.date()}}</td>
+            <td>{{query.ExpRetDate}}</td>
+
+            {% if query.ActRetDate == None %}
+            <td class="text-danger">Book Not returned </td>
+            {% else %}
+            <td>{{query.ActRetDate.date()}}</td>
+            {% endif %}
+
+            <td>{{query.status}}</td>
+          </tr>
+          {% endif %}
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    {% else %}
+    <h3> No record's found</h3>
+    {% endif %}
+    <div class="container">
+      <a class="btn btn-secondary" href="/">Back</a>
+    </div>
+  </div>
+
+</main>
+
+
+
+
+{% endblock %}

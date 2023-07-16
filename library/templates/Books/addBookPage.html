@@ -1,0 +1,63 @@
+{% extends "baseTemplate.html" %}
+
+{% block title %}
+Add Book
+{% endblock %}
+
+
+{% block body %}
+<div class="container-md p-2 col-sm-5">
+    <form action="/add/book" method="post">
+        <div class="mb-3">
+            <input type="text" class="form-control"  placeholder="Enter Title" name="title" required>
+        </div>
+        <div class="mb-3">
+            <input type="text" class="form-control"  placeholder="Enter Authors" name="authors" required>
+        </div>
+        <div class="mb-3">
+            <input type="text" class="form-control"  placeholder="Enter Average rating"
+                name="average_rating" required>
+        </div>
+        <div class="mb-3">
+            <input type="text" class="form-control"  placeholder="Enter ISBN" name="isbn" required>
+        </div>
+        <div class="mb-3">
+            <input type="text" class="form-control"  placeholder="Enter ISBN13" name="isbn13" required>
+        </div>
+        <div class="mb-3">
+            <input type="text" class="form-control"  placeholder="Enter Language code"
+                name="language_code" required>
+        </div>
+        <div class="mb-3">
+            <input type="number" class="form-control"  placeholder="Enter No. pages" name="num_pages" required>
+        </div>
+        <div class="mb-3">
+            <input type="number" class="form-control"  placeholder="Enter Ratings count"
+                name="ratings_count" required>
+        </div>
+        <div class="mb-3">
+            <input type="text" class="form-control"  placeholder="Enter Text reviews count"
+                name="text_reviews_count" required>
+        </div>
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Enter Publication date</label>
+            <input type="date" class="form-control"  placeholder="publication_date"
+                name="publication_date" required>
+        </div>
+        <div class="mb-3">
+            <input type="text" class="form-control"  placeholder="Enter Publisher" name="publisher" required>
+        </div>
+        <div class="mb-3">
+            <input type="number" class="form-control"  placeholder="Enter No. Quantity" name="quantity" required>
+        </div>
+        <div class="mb-3">
+            <input type="number" class="form-control"  placeholder="Enter Rent Charges" name="rent" required>
+        </div>
+        <div class="d-grid gap-2">
+            <button type="submit" class="btn btn-secondary">Add Book</button>
+        </div>
+    </form>
+</div>
+
+
+{% endblock %}

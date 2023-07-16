@@ -1,0 +1,38 @@
+{% extends "baseTemplate.html" %}
+
+{% block title %}
+Add member
+{% endblock %}
+
+{% block body %}
+<div class="container">
+  {% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+  {% for category, message in messages %}
+  <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+    <strong> {{message}}</strong>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+  {% endfor %}
+  {% endif %}
+  {% endwith %}
+</div>
+
+<div class="container-md p-2 col-sm-5">
+  <form action="/add/member" method="post">
+    <div class="mb-3">
+      <input type="text" class="form-control" name="name" placeholder="Enter Full name" required>
+    </div>
+    <div class="mb-3">
+      <input type="text" class="form-control" name="username" placeholder="Enter Username" required>
+    </div>
+    <div class="mb-3">
+      <input type="email" class="form-control" name="userEmail" placeholder="Enter Email address" required>
+    </div>
+    <div class="d-grid gap-2">
+      <button type="submit" class="btn btn-secondary">Add Member</button>
+    </div>
+  </form>
+</div>
+
+{% endblock %}

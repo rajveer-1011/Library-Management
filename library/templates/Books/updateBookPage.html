@@ -1,0 +1,71 @@
+{% extends "baseTemplate.html" %}
+
+{% block title %}
+Create
+{% endblock %}
+
+
+{% block body %}
+<div class="container-md p-2 col-sm-5">
+    <form action="/update/book/{{book.bookID}}" method="post">
+        <div class="mb-3">
+            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                placeholder="title" name="title" value="{{book.title}}" required>
+        </div>
+        <div class="mb-3">
+            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                placeholder="authors" name="authors" value="{{book.authors}}" required>
+        </div>
+        <div class="mb-3">
+            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                placeholder="average_rating" name="average_rating" value="{{book.average_rating}}" required >
+        </div>
+        <div class="mb-3">
+            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                placeholder="isbn" name="isbn" value="{{book.isbn}}" required>
+        </div>
+        <div class="mb-3">
+            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                placeholder="isbn13" name="isbn13" value="{{book.isbn13}}" required>
+        </div>
+        <div class="mb-3">
+            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                placeholder="language_code" name="language_code" value="{{book.language_code}}" required>
+        </div>
+        <div class="mb-3">
+            <input type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                placeholder="num_pages" name="num_pages" value="{{book.num_pages}}" required>
+        </div>
+        <div class="mb-3">
+            <input type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                placeholder="ratings_count" name="ratings_count" value="{{book.ratings_count}}" required>
+        </div>
+        <div class="mb-3">
+            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                placeholder="text_reviews_count" name="text_reviews_count" value="{{book.text_reviews_count}}" required>
+        </div>
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Enter Publication date</label>
+            <input type="date" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                placeholder="publication_date" name="publication_date" value="{{book.publication_date}}" required>
+        </div>
+        <div class="mb-3">
+            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                placeholder="publisher" name="publisher" value="{{book.publisher}}" required>
+        </div>
+        <div class="mb-3">
+            <input type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                placeholder="quantity" name="quantity" value="{{book.quantity}}" required>
+        </div>
+        <div class="mb-3">
+            <input type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                placeholder="rent" name="rent" value="{{book.rent}}" required>
+        </div>
+        <div class="d-grid gap-2">
+            <button type="submit" class="btn btn-secondary">Update Book</button>
+        </div>
+    </form>
+</div>
+
+
+{% endblock %}

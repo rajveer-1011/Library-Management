@@ -1,0 +1,170 @@
+{% extends "baseTemplate.html" %}
+
+{% block title %}
+Home
+{% endblock %}
+
+{% block body %}
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+    <symbol id="members" viewBox="0 0 16 16">
+        <path
+            d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7Zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm-5.784 6A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216ZM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z" />
+    </symbol>
+    <symbol id="books" viewBox="0 0 16 16">
+        <path
+            d="M5 0h8a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2 2 2 0 0 1-2 2H3a2 2 0 0 1-2-2h1a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1H1a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v9a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1H3a2 2 0 0 1 2-2z" />
+        <path
+            d="M1 6v-.5a.5.5 0 0 1 1 0V6h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0V9h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 2.5v.5H.5a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1H2v-.5a.5.5 0 0 0-1 0z" />
+    </symbol>
+    <symbol id="transaction" viewBox="0 0 16 16">
+        <path fill-rule="evenodd"
+            d="M11.5 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L11 2.707V14.5a.5.5 0 0 0 .5.5zm-7-14a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L4 13.293V1.5a.5.5 0 0 1 .5-.5z" />
+    </symbol>
+    <symbol id="issue" viewBox="0 0 16 16">
+        <path fill-rule="evenodd"
+            d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-7.5 3.5a.5.5 0 0 1-1 0V5.707L5.354 7.854a.5.5 0 1 1-.708-.708l3-3a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 5.707V11.5z" />
+    </symbol>
+    <symbol id="return" viewBox="0 0 16 16">
+        <path fill-rule="evenodd"
+            d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v5.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V4.5z" />
+    </symbol>
+    <symbol id="issue" viewBox="0 0 16 16">
+        <path fill-rule="evenodd"
+            d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-7.5 3.5a.5.5 0 0 1-1 0V5.707L5.354 7.854a.5.5 0 1 1-.708-.708l3-3a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 5.707V11.5z" />
+    </symbol>
+    <symbol id="notreturn" viewBox="0 0 16 16">
+        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+        <path
+            d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995z" />
+    </symbol>
+</svg>
+
+<div class="container px-4 py-3" id="hanging-icons">
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    {% for category, message in messages %}
+    <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+        <strong> {{message}}</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+
+    {% include 'Modals/issueBookModal.html' %}
+    {% include 'Modals/returnBookModal.html' %}
+    {% include 'Modals/importModal.html' %}
+
+
+    <h2 class="pb-2 border-bottom">Library Management</h2>
+    <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
+        <div class="col d-flex align-items-start">
+            <div
+                class="icon-square text-body-emphasis bg-body-secondary d-inline-flex align-items-center justify-content-center fs-4 flex-shrink-0 me-3">
+                <svg class="bi" width="1em" height="1em">
+                    <use xlink:href="#books" />
+                </svg>
+            </div>
+            <div>
+                <a class="text-decoration-none " href="/books">
+                    <h3 class="fs-2 text-body-emphasis">Books</h3>
+                </a>
+                <p>All books added will be seen in books tab. </br> Total no. of books added are : {{book}}</p>
+                <a href="/add/book" class="btn btn-primary">
+                    Add book
+                </a>
+                <button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#importModal">
+                    Import Books From API
+                </button>
+
+            </div>
+        </div>
+        <div class="col d-flex align-items-start">
+            <div
+                class="icon-square text-body-emphasis bg-body-secondary d-inline-flex align-items-center justify-content-center fs-4 flex-shrink-0 me-3">
+                <svg class="bi" width="1em" height="1em">
+                    <use xlink:href="#members" />
+                </svg>
+            </div>
+            <div>
+                <a class="text-decoration-none " href="/members">
+                    <h3 class="fs-2 text-body-emphasis">Members</h3>
+                </a>
+                <p>All members added will be sen in members tab. <br> Total no. of members added are : {{user}}.</p>
+                <a href="/add/member" class="btn btn-primary">
+                    Add member
+                </a>
+            </div>
+        </div>
+        <div class="col d-flex align-items-start">
+            <div
+                class="icon-square text-body-emphasis bg-body-secondary d-inline-flex align-items-center justify-content-center fs-4 flex-shrink-0 me-3">
+                <svg class="bi" width="1em" height="1em">
+                    <use xlink:href="#transaction" />
+                </svg>
+            </div>
+            <div>
+                <a class="text-decoration-none " href="/transaction">
+                    <h3 class="fs-2 text-body-emphasis">Transactions</h3>
+                </a>
+
+                <p>All transactions are recorded in transaction tab.<br> Total no. of transactions made are :</p>
+                <a href="/transaction" class="btn btn-primary">
+                    Show transactions
+                </a>
+            </div>
+        </div>
+        <div class="col d-flex align-items-start py-3">
+            <div
+                class="icon-square text-body-emphasis bg-body-secondary d-inline-flex align-items-center justify-content-center fs-4 flex-shrink-0 me-3">
+                <svg class="bi" width="1em" height="1em">
+                    <use xlink:href="#notreturn" />
+                </svg>
+            </div>
+            <div>
+                <h3 class="fs-2 text-body-emphasis">Not returned books</h3>
+                <p>All transactions are recorded in transaction tab.<br>
+                    No. of not returned books : {{notReturned}}</p>
+                <a href="/transaction/notreturn" class="btn btn-secondary">
+                    Show transactions
+                </a>
+            </div>
+        </div>
+        <div class="col d-flex align-items-start py-3">
+            <div
+                class="icon-square text-body-emphasis bg-body-secondary d-inline-flex align-items-center justify-content-center fs-4 flex-shrink-0 me-3">
+                <svg class="bi" width="1em" height="1em">
+                    <use xlink:href="#issue" />
+                </svg>
+            </div>
+            <div>
+                <h3 class="fs-2 text-body-emphasis">Issued books</h3>
+                <p>All transactions are recorded in transaction tab.<br>
+                    No. of not returned books : {{issued}}</p>
+                <button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#issueModal">
+                    Issue book
+                </button>
+            </div>
+        </div>
+        <div class="col d-flex align-items-start py-3">
+            <div
+                class="icon-square text-body-emphasis bg-body-secondary d-inline-flex align-items-center justify-content-center fs-4 flex-shrink-0 me-3">
+                <svg class="bi" width="1em" height="1em">
+                    <use xlink:href="#return" />
+                </svg>
+            </div>
+            <div>
+                <h3 class="fs-2 text-body-emphasis">Returned books</h3>
+                <p>All transactions are recorded in transaction tab.<br> No. of books returned : {{returned}}</p>
+                <button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    Return book
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

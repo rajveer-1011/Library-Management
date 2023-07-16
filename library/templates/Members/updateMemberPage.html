@@ -1,0 +1,29 @@
+{% extends "baseTemplate.html" %}
+
+{% block title %}
+Create
+{% endblock %}
+
+
+{% block body %}
+<div class="container-md p-2 col-sm-5">
+  <form action="/member/update/{{member.userID}}" method="post">
+    <div class="mb-3">
+      <input type="text" class="form-control" name="userName" placeholder="Enter Name" value="{{member.name}}" required>
+    </div>
+    <div class="mb-3">
+      <input type="text" class="form-control" name="phoneNo" placeholder="Enter Username" value="{{member.userName}}"
+        required>
+    </div>
+    <div class="mb-3">
+      <input type="email" class="form-control" name="userEmail" placeholder="Enter Email address"
+        value="{{member.userEmail}}" required>
+    </div>
+    <div class="d-grid gap-2">
+      <button type="submit" class="btn btn-secondary">Update Member</button>
+    </div>
+  </form>
+</div>
+
+
+{% endblock %}
