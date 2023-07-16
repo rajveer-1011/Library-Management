@@ -5,8 +5,8 @@ Library Management is a simple web application built with Flask that helps libra
 
 ## Features
 - Books Management: Allows librarians to add and import books from Frapee API, and update, and delete books from the library's collection.
-- Member Management: Enables librarians to manage library members, including adding new members, updating member information, and keeping track of transaction history.
-- Transaction Management: All transactions of issuing and returning are recorded.
+- Members Management: Enables librarians to manage library members, including adding new members, updating member information, and keeping track of transaction history.
+- Transactions Management: All transactions of issuing and returning are recorded.
 - Circulation Management: Handles the issuing and returning of books by members. It tracks due dates and manages rent for returns.
 - Book Search: Provides a search functionality to find books based on title or author.
 - Analytics: Generates graphs for popular books, and top-paying members' data to librarians.
